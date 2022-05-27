@@ -1,16 +1,19 @@
-const express = require('express')
+const express = require('express');
 
-const router = express.Router()
+const router = express.Router();
 const {
   createRiddle,
   deleteRiddle,
   getAllRiddles,
   updateRiddle,
   getRiddle,
-} = require('../controllers/riddle')
+  getRandomRiddle,
+} = require('../controllers/riddle');
 
-router.route('/').post(createRiddle).get(getAllRiddles)
+router.route('/').post(createRiddle).get(getAllRiddles);
 
-router.route('/:id').get(getRiddle).delete(deleteRiddle).patch(updateRiddle)
+router.route('/random').get(getRandomRiddle);
 
-module.exports = router
+router.route('/:id').get(getRiddle).delete(deleteRiddle).patch(updateRiddle);
+
+module.exports = router;

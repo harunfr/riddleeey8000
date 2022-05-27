@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 console.log(
-  'This script populates some riddles to your database. Specified database as argument - e.g.: populatedb mongoDB_URI, or use .env file.'
+  'This script populates some riddles to your database. Specified database as argument - e.g.: populatedb mongoDB_URI, or use .env file.',
 );
 
 const Riddle = require('./models/Riddle');

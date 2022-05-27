@@ -44,15 +44,21 @@ const updateRiddle = async (req, res) => {
 const deleteRiddle = async (req, res) => {
   const {
     params: { id: riddleId },
-  } = req
+  } = req;
 
   const riddle = await Riddle.findByIdAndRemove({
     _id: riddleId,
-  })
+  });
   if (!riddle) {
-    throw new NotFoundError(`No riddle with id ${riddleId}`)
+    throw new NotFoundError(`No riddle with id ${riddleId}`);
   }
-  res.status(StatusCodes.OK).send()
+  res.status(StatusCodes.OK).send();
+};
+
+const getRandomRiddle = async (req, res) => {
+  const randomRiddle = await Riddle.aggregate([{ $sample: { size: 1 } }]);
+
+  res.send(randomRiddle);
 };
 
 module.exports = {
@@ -61,4 +67,5 @@ module.exports = {
   getAllRiddles,
   updateRiddle,
   getRiddle,
+  getRandomRiddle,
 };
